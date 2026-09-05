@@ -1,4 +1,5 @@
 name: Pipeline Integracion Continua
+
 on:
   push:
     branches: [ develop ]
@@ -20,4 +21,4 @@ jobs:
           pip install -r requirements.txt
       - name: Run Tests
         run: |
-          pytest
+          python -m pytest
