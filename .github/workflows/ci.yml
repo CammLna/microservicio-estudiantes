@@ -2,9 +2,9 @@ name: Pipeline Integracion Continua
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ Desarrollar, develop ]
   pull_request:
-    branches: [ main ]
+    branches: [ Principal, main ]
 
 jobs:
   test:
