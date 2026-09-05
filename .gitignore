@@ -1,0 +1,7 @@
+venv/
+VirtualBox/
+.pytest_cache/
+*.exe
+*.pdf
+*.docx
+*.doc
