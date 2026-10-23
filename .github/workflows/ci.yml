@@ -2,9 +2,9 @@ name: Pipeline CI/CD Microservicio
 
 on:
   push:
-    branches: [ Desarrollar, develop, Principal, main ]
+    branches: [ desarrollar, Desarrollar, develop, Principal, main ]
   pull_request:
-    branches: [ Desarrollar, develop, Principal, main ]
+    branches: [ desarrollar, Desarrollar, develop, Principal, main ]
 
 jobs:
   test-and-security:
