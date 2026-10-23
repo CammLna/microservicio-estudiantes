@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  microservicio:
+    build: .
+    container_name: microservicio_estudiantes
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - ENV=production
+    restart: always

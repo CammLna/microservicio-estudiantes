@@ -1,24 +1,56 @@
-name: Pipeline Integracion Continua
+name: Pipeline CI/CD Microservicio
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ Desarrollar, develop, Principal, main ]
   pull_request:
-    branches: [ main ]
+    branches: [ Desarrollar, develop, Principal, main ]
 
 jobs:
-  test:
+  test-and-security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout del codigo
+        uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Run Tests
         run: |
           python -m pytest
+
+      # Requisito IE3: Escaneo de seguridad y vulnerabilidades
+      - name: Security Scan with Snyk
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  build-and-deploy:
+    needs: test-and-security
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del codigo
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Requisito IE1: Construcción de imagen Docker
+      - name: Build Docker Image
+        run: |
+          docker build -t microservicio-pelicula:latest .
+
+      # Requisito IE4 y IE5: Orquestación y despliegue simulado
+      - name: Deploy with Docker Compose
+        run: |
+          docker-compose up -d
+          docker-compose ps
