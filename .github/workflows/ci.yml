@@ -27,10 +27,9 @@ jobs:
         run: |
           python -m pytest
 
-      # Requisito IE3: Escaneo de seguridad con Snyk CLI
       - name: Security Scan with Snyk
         uses: snyk/actions/node@master
-        continue-on-error: true # Permite que el pipeline avance si se encuentran advertencias leves
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
@@ -52,5 +51,5 @@ jobs:
 
       - name: Deploy with Docker Compose
         run: |
-          docker-compose up -d
-          docker-compose ps
+          docker compose up -d
+          docker compose ps
