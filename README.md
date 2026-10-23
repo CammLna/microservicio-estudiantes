@@ -3,42 +3,38 @@
 * **Camila Luna** - *DevOps & Integración Continua (CI/CD)*
 * **Cristobal Sotelo** - *Desarrollo & Control de Versiones*
 * **Gerardo Bustos** - *Pruebas & Documentación*
+  # Microservicio Estudiantes - Evaluación Parcial 2 (EP2)
 
-# Microservicio Python - Evaluación EP1 DevOps
----
-
-##  Estrategia de Ramificación (GitFlow)
-Elegimos **GitFlow** porque nos permite organizar el desarrollo usando distintas ramas sin hacer un desorden en el código:
-- `Principal` (`main`): Se queda con la versión estable y limpia que sí funciona.
-- `Desarrollar` (`develop`): Aquí juntamos todos los cambios que vamos haciendo el equipo.
-- `feature/*`: Para crear y probar nuevas cosas sin romper el resto del proyecto.
-- `hotfix/*`: Para arreglar fallos urgentes en producción de forma rápida.
-
-Esta metodología nos ayuda a trabajar en equipo de manera más ordenada.
+## Información del Proyecto
+- **Asignatura:** Ingeniería DevOps (DOY0101)
+- **Institución:** Duoc UC
+- **Repositorio:** `microservicio-estudiantes`
+- **Lenguaje / Framework:** Python (`pytest`)
 
 ---
 
-##  Convención de Commits
-Usamos commits semánticos simples para saber qué hizo cada uno:
-- `feat:` Para agregar nuevas funciones al microservicio.
-- `fix:` Para corregir fallos en el código o en los tests.
-- `ci:` Para los cambios en los flujos de GitHub Actions.
-- `chore:` Para tareas de mantenimiento o actualizar librerías.
+## Arquitectura y Orquestación
+- **Contenedorización:** Se definió un `Dockerfile` optimizado sobre `python:3.10-slim`.
+- **Orquestación:** Se configuró un entorno multicontenedor simulado utilizando `docker-compose.yml`.
 
 ---
 
-## Pipeline CI/CD
-Dejamos todo automatizado con **GitHub Actions** (`.github/workflows/ci.yml`). Cada vez que subimos cambios con un `push` o `pull_request`, GitHub hace lo siguiente solo:
-1. Monta el entorno con **Python 3.10**.
-2. Instala las dependencias del archivo `requirements.txt`.
-3. Corre las pruebas automatizadas con `pytest` para verificar que nada se rompa.
+## Estrategia de Ramificación (GitFlow)
+El desarrollo del proyecto se lleva a cabo mediante la rama principal de integración:
+- `desarrollar`: Rama donde se integran y prueban los cambios antes del despliegue final.
 
 ---
 
-## Uso de Inteligencia Artificial
-Usamos Inteligencia Artificial como un apoyo técnico para resolver errores en la terminal, solucionar problemas de permisos en Git y ayudarnos a estructurar la documentación.
+## Pipeline CI/CD (GitHub Actions)
+El pipeline automatizado (`.github/workflows/ci.yml`) consta de las siguientes etapas:
+1. **Tests Unitarios:** Ejecución automatizada de pruebas mediante `pytest`.
+2. **Análisis de Seguridad (SAST):** Escaneo de vulnerabilidades en dependencias mediante **Snyk**.
+3. **Construcción y Despliegue:** Creación de la imagen Docker y prueba de orquestación con `docker compose`.
 
 ---
 
-##  Conclusión
-Combinar GitFlow con el pipeline de GitHub Actions nos salvó de muchos errores. Probar el código automáticamente antes de unir las ramas hace que el trabajo sea mucho más fluido y seguro para todo el equipo.
+## Declaración sobre el uso de Inteligencia Artificial
+Se utilizó IA como herramienta de apoyo exclusivamente para:
+- Formateo y corrección de sintaxis en archivos YAML (`ci.yml` y `docker-compose.yml`).
+- Estructuración y diagramación del archivo de documentación `README.md`.
+
