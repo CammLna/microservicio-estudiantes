@@ -38,3 +38,9 @@ Se utilizó IA como herramienta de apoyo exclusivamente para:
 - Formateo y corrección de sintaxis en archivos YAML (`ci.yml` y `docker-compose.yml`).
 - Estructuración y diagramación del archivo de documentación `README.md`.
 
+---
+
+## Reflexiones Individuales (Obligatorias)
+
+### Reflexión - Camila Luna
+Para la seguridad dejamos una doble protección: pusimos **Snyk** en el pipeline y a **Dependabot** en GitHub para escanear las librerías y avisar si hay fallos. Si las pruebas y la seguridad pasan, el sistema arma la imagen Docker y levanta el contenedor solo para simular el despliegue.
