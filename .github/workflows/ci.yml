@@ -5,6 +5,7 @@ on:
     branches: [ desarrollar, Desarrollar, develop, Principal, main ]
   pull_request:
     branches: [ desarrollar, Desarrollar, develop, Principal, main ]
+  workflow_dispatch:
 
 jobs:
   test-and-security:
@@ -53,3 +54,20 @@ jobs:
         run: |
           docker compose up -d
           docker compose ps
+
+
+      - name: Deploy to AWS
+
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.AWS_IP }}
+          username: ec2-user
+          key: ${{ secrets.AWS_KEY }}
+          command_timeout: 30m
+          script: | 
+            echo "Nice Job!!!" > no way this works
+
+
+
+
+
