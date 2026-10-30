@@ -64,7 +64,7 @@ jobs:
           key: ${{ secrets.AWS_KEY }}
           command_timeout: 30m
           script: | 
-            git clone https://github.com/CammLna/microservicio-estudiantes/actions
+            git clone https://github.com/CammLna/microservicio-estudiantes
 
 
       - name: AWS docker build
