@@ -1,11 +1,11 @@
 name: Pipeline CI/CD Microservicio
 
 on:
+  workflow_dispatch:
   push:
     branches: [ desarrollar, Desarrollar, develop, Principal, main ]
   pull_request:
     branches: [ desarrollar, Desarrollar, develop, Principal, main ]
-  workflow_dispatch:
 
 jobs:
   test-and-security:
