@@ -77,7 +77,7 @@ jobs:
           script: | 
             cd microservicio-estudiantes
             git checkout desarrollar
-            docker build -t microservicio-pelicula:latest .
+            docker build -t microservicio-estudiantes:latest .
             cd ..
             rm -rf microservicio-estudiantes
           
@@ -90,7 +90,9 @@ jobs:
           key: ${{ secrets.AWS_KEY }}
           command_timeout: 30m
           script: | 
-            docker run -e ENV=production --name microservicio-pelicula -p 5000:5000 -d microservicio-pelicula:latest 
+            docker stop microservicio-estudiantes
+            docker rm microservicio-estudiantes
+            docker run -e ENV=production --name microservicio-estudiantes -p 5000:5000 -d microservicio-estudiantes:latest 
 
             
 
