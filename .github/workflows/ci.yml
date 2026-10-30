@@ -79,7 +79,7 @@ jobs:
             git checkout desarrollar
             docker build -t microservicio-pelicula:latest .
             cd ..
-            rm microservicio-estudiantes
+            rm -rf microservicio-estudiantes
           
 
       - name: AWS docker run
