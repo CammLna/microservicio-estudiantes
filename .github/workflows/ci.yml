@@ -56,8 +56,7 @@ jobs:
           docker compose ps
 
 
-      - name: Deploy to AWS
-
+      - name: AWS checkout code
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.AWS_IP }}
@@ -65,8 +64,35 @@ jobs:
           key: ${{ secrets.AWS_KEY }}
           command_timeout: 30m
           script: | 
-            echo "Nice Job!!!" > no way this works
+            git clone https://github.com/CammLna/microservicio-estudiantes/actions
 
+
+      - name: AWS docker build
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.AWS_IP }}
+          username: ec2-user
+          key: ${{ secrets.AWS_KEY }}
+          command_timeout: 30m
+          script: | 
+            cd microservicio-estudiantes
+            git checkout desarrollar
+            docker build -t microservicio-pelicula:latest .
+            cd ..
+            rm microservicio-estudiantes
+          
+
+      - name: AWS docker run
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.AWS_IP }}
+          username: ec2-user
+          key: ${{ secrets.AWS_KEY }}
+          command_timeout: 30m
+          script: | 
+            docker run --name microservicio-pelicula -p 5000:5000 -d microservicio-pelicula:latest 
+
+            
 
 
 
