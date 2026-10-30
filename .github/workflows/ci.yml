@@ -90,7 +90,7 @@ jobs:
           key: ${{ secrets.AWS_KEY }}
           command_timeout: 30m
           script: | 
-            docker run --name microservicio-pelicula -p 5000:5000 -d microservicio-pelicula:latest 
+            docker run -e ENV=production --name microservicio-pelicula -p 5000:5000 -d microservicio-pelicula:latest 
 
             
 
